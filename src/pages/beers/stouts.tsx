@@ -1,24 +1,25 @@
 import type { NextPage } from "next";
+import { Error, Loading, BeerCard } from "../../components";
 import { useBeersData } from "../../hooks/useBeersData";
 import { Beer } from "../../types/Beers";
 
 const StoutsBeerPage: NextPage = () => {
-  const { data, error } = useBeersData("stouts");
-  if (error) return <div>failed to Loading</div>;
-  if (!data) return <div>Loading...</div>;
+  const name = "stouts";
+  const { data, error } = useBeersData(name);
+
+  if (error) return <Error />;
+  if (!data) return <Loading />;
+
   return (
     <div>
-      <h1> Beers stouts</h1>
+      <h1> Beers Stouts</h1>
       <main>
         {data.map((beerData: Beer) => {
-          const { id, name, price, rating } = beerData;
           return (
-            <div key={`stouts-beer-list-${beerData.id}`}>
-              <h1>{beerData.name}</h1>
-              <p>가격: {beerData.price}</p>
-              <p>평점: ⭐️ {beerData.rating.average}</p>
-              <p>리뷰: 🖍 {beerData.rating.reviews}</p>
-            </div>
+            <BeerCard
+              key={`stouts-beer-list-${beerData.id}`}
+              beerData={beerData}
+            />
           );
         })}
       </main>
