@@ -3,7 +3,7 @@ import { useWineData } from "../../hooks/useWineData";
 import { Wine } from "../../types/Wine";
 
 // 타입 선언 :NextPage -> 타입스크립트에서 나옴
-const Port: NextPage = () => {
+const PortWinePage: NextPage = () => {
   const { data, error } = useWineData("whites");
 
   // 에러가 나면 에러 해주고 데이터 잇으면 데이터 뱉어줌
@@ -16,11 +16,14 @@ const Port: NextPage = () => {
       <main>
         {data.map((wineData: Wine) => {
           // types에서 불러옴
-          const { id, wine, winery } = wineData;
+          const { id, wine, winery, rating, image } = wineData;
           return (
             <div key={`port-wine-list-${wineData.id}`}>
               <h1>{wineData.wine}</h1>
-              <p>{wineData.winery}</p>
+              <img src={wineData.image} alt={wineData.wine} />
+              <p>생산지: {wineData.winery}</p>
+              <p>평점: ⭐️ {wineData.rating.average}</p>
+              <p>리뷰: 🖍 {wineData.rating.reviews}</p>
             </div>
           );
         })}
@@ -29,4 +32,4 @@ const Port: NextPage = () => {
   );
 };
 
-export default Port;
+export default PortWinePage;
