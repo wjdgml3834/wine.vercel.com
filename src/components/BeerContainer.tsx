@@ -11,15 +11,18 @@ export const BeerContainer = ({ name }: BeerContainerProps) => {
   if (error) return <Error />;
   if (!data) return <Loading />;
   return (
-    <main>
-      {data.map((beerData: Beer) => {
-        return (
-          <BeerCard
-            key={`${name}-beer-list-${beerData.id}`}
-            beerData={beerData}
-          />
-        );
-      })}
-    </main>
+    <div>
+      <h1> {name} beer</h1>
+      <main>
+        {data.map((beerData: Beer) => {
+          return (
+            <BeerCard
+              key={`${name}-beer-list-${beerData.id}`}
+              beerData={beerData}
+            />
+          );
+        })}
+      </main>
+    </div>
   );
 };

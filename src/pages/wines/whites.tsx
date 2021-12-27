@@ -6,7 +6,6 @@ const WhitesWinePage: NextPage = () => {
 
   return (
     <div>
-      <h1> {name} Wine</h1>
       <WineContainer name={name} />
     </div>
   );
