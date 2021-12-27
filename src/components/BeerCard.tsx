@@ -10,7 +10,7 @@ export const BeerCard = ({ beerData }: BeerProps) => {
     <div>
       <h1>{beerData.name}</h1>
       <p>가격: {beerData.price}</p>
-      <p>평점: ⭐️ {beerData.rating.average}</p>
+      <p>평점: ⭐️ {beerData.rating.average.toFixed(2)}</p>
       <p>리뷰: 🖍 {beerData.rating.reviews}개</p>
     </div>
   );
